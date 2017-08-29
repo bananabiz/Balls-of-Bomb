@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour {
 
-    public GameObject bomb, stoplayer;
+    public GameObject bomb; //stoplayer;
+    public GameObject prefabBomb;
     public Transform spawnpoint;
     public int[] x;
 
@@ -20,12 +21,11 @@ public class Spawn : MonoBehaviour {
 
     void SpawnObject()
     {
-        stoplayer.GetComponent<Collider2D>().enabled = true;
+        //stoplayer.GetComponent<Collider2D>().enabled = true;
         i = Random.Range(0, 6);
-        Instantiate(bomb, new Vector2(x[i], 3.5f), spawnpoint.rotation);
-        //bomb.GetComponent<Rigidbody2D>().gravityScale = 0;
-        //Rigidbody2D Rigid = bomb.GetComponent<Rigidbody2D>();
-        //rigid.gravityScale = 0;
+        prefabBomb = Instantiate(bomb, new Vector2(x[i], 3.5f), spawnpoint.rotation);
+        rigid = prefabBomb.GetComponent<Rigidbody2D>();
+        rigid.gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -35,16 +35,10 @@ public class Spawn : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnObject();
-            
-            //CancelInvoke("SpawnObject");
-            //Instantiate(bomb, spawnpoint.position, spawnpoint.rotation);
-
         }
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            stoplayer.GetComponent<Collider2D>().enabled = false;
-            //bomb.GetComponent<Rigidbody2D>().gravityScale = 2;
-            //rigid.gravityScale = 2;
+            rigid.gravityScale = 2;
         }
         return;
     }

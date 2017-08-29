@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-
-    public GameObject bomb;
+    public GameObject bombPrefab;
     public Transform spawn;
     public Transform[] targets;
-    //public Vector3 target;
+    
     public int[] x, y;
-    public float speed;
+    public float speed = 10f;
 
     private int i;
     private Rigidbody2D rigid;
     
-    void Start()
+    void Awake()
     {
-        //rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
        
     }
 
@@ -25,20 +24,12 @@ public class Shoot : MonoBehaviour
     {
         
         i = Random.Range(0, 6);
-        GameObject shoot = Instantiate(bomb, new Vector3(0, 3.5f), spawn.rotation);
-
+        GameObject shoot = Instantiate(bombPrefab, new Vector3(0, 3.5f), spawn.rotation);
+        //bombPrefab = Instantiate(bomb, spawn.position, Quaternion.Euler(Vector3(x, y, z)));
         //target = new Vector3(x[i], y[i], 0);
-        Vector3 direction = targets[i].position - transform.position;
-        direction.Normalize();
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         rigid = shoot.GetComponent<Rigidbody2D>();
-
-        transform.position += (Vector3)direction * speed;  // * Time.deltaTime
-        //rigid.direction = direction;
-        //rigid.AddForce(direction * speed);
+        rigid.gravityScale = 0;
+        
     }
 
     void Update()
@@ -47,18 +38,19 @@ public class Shoot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnObject();
-
         }
-        /*
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
-            Vector3 direction = target - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = rotation;
-            //rigid.rotation = rotation;
-            transform.position += (Vector3)target * speed;
+            //rigid.gravityScale = 2;
 
-        }*/
+            Vector3 direction = targets[i].position - transform.position;
+            direction.Normalize();
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            rigid.AddForce((Vector3)direction * speed, ForceMode2D.Impulse);
+        }
         return;
     }
 }
