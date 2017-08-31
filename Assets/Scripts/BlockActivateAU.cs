@@ -35,6 +35,5 @@ public class BlockActivateAU : MonoBehaviour
             blockAU.GetComponent<Collider2D>().enabled = true;
             GameObject.Find("BlockAU").GetComponent<MeshRenderer>().material.color = colorActivate;
         }
-
     }
 }

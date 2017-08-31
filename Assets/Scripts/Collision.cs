@@ -29,8 +29,13 @@ public class Collision : MonoBehaviour
             scoreManager.score++;
 
             //deActivate.DeActivateBlock();
+
+
+            // Detect collision (OnCollisionEnter2D)
+            // IF collides with bomb
+            // Deactivate self (gameObject.SetActive(false))
         }
-        
+
     }
    
 }
