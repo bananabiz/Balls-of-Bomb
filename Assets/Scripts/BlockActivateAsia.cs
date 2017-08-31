@@ -13,8 +13,8 @@ public class BlockActivateAsia : MonoBehaviour {
 
     void Awake()
     {
-        colorStart = new Color(0.5f, 0.5f, 0.5f, 0);
-        colorActivate = new Color(0, 1, 0, 1);
+        colorStart = new Color(0.5f, 0.5f, 0.5f, 0.1f);
+        colorActivate = new Color(1, 0.9f, 0.02f, 1);
 
         GameObject.Find("BlockAsia").GetComponent<MeshRenderer>().material.color = colorStart;
         blockAsia.GetComponent<Collider2D>().enabled = false;
@@ -33,6 +33,7 @@ public class BlockActivateAsia : MonoBehaviour {
         {
             blockAsia.GetComponent<Collider2D>().enabled = true;
             GameObject.Find("BlockAsia").GetComponent<MeshRenderer>().material.color = colorActivate;
+            //Cursor.visible = false;
         }
 
     }

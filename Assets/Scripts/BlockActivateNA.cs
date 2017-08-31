@@ -13,8 +13,8 @@ public class BlockActivateNA : MonoBehaviour {
 
     void Awake()
     {
-        colorStart = new Color(0.5f, 0.5f, 0.5f, 0);
-        colorActivate = new Color(0, 1, 0, 1);
+        colorStart = new Color(0.5f, 0.5f, 0.5f, 0.1f);
+        colorActivate = new Color(1, 0.9f, 0.02f, 1);
 
         GameObject.Find("BlockNA").GetComponent<MeshRenderer>().material.color = colorStart;
         blockNA.GetComponent<Collider2D>().enabled = false;
@@ -33,6 +33,7 @@ public class BlockActivateNA : MonoBehaviour {
         {
             blockNA.GetComponent<Collider2D>().enabled = true;
             GameObject.Find("BlockNA").GetComponent<MeshRenderer>().material.color = colorActivate;
+            //Cursor.visible = false;
         }
 
     }

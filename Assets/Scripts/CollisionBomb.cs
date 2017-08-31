@@ -6,29 +6,35 @@ using UnityEngine.UI;
 public class CollisionBomb : MonoBehaviour
 {
     public Rigidbody2D bomb;
-    public Text scoreText;
-    private int s;
+    public ScoreManager2 scoreManager2;
+    
+    public AudioSource sound;
+
+    private void Awake()
+    {
+        sound = GetComponent<AudioSource>();
+        bomb = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
-        bomb = GetComponent<Rigidbody2D>();
-        s = 0;
+        
+        scoreManager2 = GameObject.Find("Score2").GetComponent<ScoreManager2>();
+
     }
 
-    private void OnCollisionEnter2D(Collision2D block)
+    private void OnCollisionEnter2D(Collision2D bomb)
     {
-        if (block.gameObject.tag == "Block")
+        if (bomb.gameObject.tag == "Bomb")
         {
-            Destroy(bomb.gameObject, 0.2f);
+            //Cursor.visible = true;
 
-            s++;
-            scoreText.text = "You have saved " + s.ToString() + " countries!";
-
-            if (s == 10)
-            {
-                scoreText.text = "YOU WIN!!!";
-                Application.Quit();
-            }
+            sound.Play();
+            
+            Destroy(bomb.gameObject, 0.01f);
+            
+            scoreManager2.score2++;
+            
         }
 
     }

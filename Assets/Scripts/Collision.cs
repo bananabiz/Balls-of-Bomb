@@ -8,10 +8,12 @@ public class Collision : MonoBehaviour
     public Rigidbody2D bomb;
     public ScoreManager scoreManager;
     public BlockDeActivate deActivate;
+    public AudioSource sound;
 
     private void Awake()
     {
         deActivate = GetComponent<BlockDeActivate>();
+        sound = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -23,17 +25,16 @@ public class Collision : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D bomb)
     {
+        //Cursor.visible = true;
+
         if (bomb.gameObject.tag == "Bomb")
         {
-            Destroy(bomb.gameObject, 0.1f);
+            sound.Play();
+            Destroy(bomb.gameObject, 0.05f);
+
+            deActivate.DeActivateBlock();
             scoreManager.score++;
 
-            //deActivate.DeActivateBlock();
-
-
-            // Detect collision (OnCollisionEnter2D)
-            // IF collides with bomb
-            // Deactivate self (gameObject.SetActive(false))
         }
 
     }
