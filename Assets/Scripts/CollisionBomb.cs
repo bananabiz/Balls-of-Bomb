@@ -27,7 +27,7 @@ public class CollisionBomb : MonoBehaviour
     {
         if (bomb.gameObject.tag == "Bomb")
         {
-            //Cursor.visible = true;
+            Cursor.visible = true;
 
             sound.Play();
             

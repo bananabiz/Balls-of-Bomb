@@ -9,11 +9,12 @@ public class Collision : MonoBehaviour
     public ScoreManager scoreManager;
     public BlockDeActivate deActivate;
     public AudioSource sound;
-
+    public BlockActivateAU buttonAU;
     private void Awake()
     {
         deActivate = GetComponent<BlockDeActivate>();
         sound = GetComponent<AudioSource>();
+
     }
 
     private void Start()
@@ -25,13 +26,14 @@ public class Collision : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D bomb)
     {
-        //Cursor.visible = true;
-
+       
         if (bomb.gameObject.tag == "Bomb")
         {
+            buttonAU.clicked = false;
+            Cursor.visible = true;
             sound.Play();
             Destroy(bomb.gameObject, 0.05f);
-
+          
             deActivate.DeActivateBlock();
             scoreManager.score++;
 
