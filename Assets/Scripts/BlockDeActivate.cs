@@ -20,35 +20,54 @@ public class BlockDeActivate : MonoBehaviour {
         
     }
 
-    public void DeActivateBlock()
+    public void DeActivateBlockAU()
     {
-        
         if (colorBlockAU == colorActivate)
-        { 
+        {
             colorBlockAU = colorStart;
             blockAU.GetComponent<Collider2D>().enabled = false;
         }
-        else if (colorBlockAsia == colorActivate)
-        { 
+    }
+
+    public void DeActivateBlockAsia()
+    {
+        if (colorBlockAsia == colorActivate)
+        {
             colorBlockAsia = colorStart;
             blockAsia.GetComponent<Collider2D>().enabled = false;
         }
-        else if (colorBlockEU == colorActivate)
+    }
+
+    public void DeActivateBlockEU()
+    {
+        if (colorBlockEU == colorActivate)
         {
             colorBlockEU = colorStart;
             blockEU.GetComponent<Collider2D>().enabled = false;
         }
-        else if (colorBlockAF == colorActivate)
+    }
+
+    public void DeActivateBlockAF()
+    {
+        if (colorBlockAF == colorActivate)
         {
             colorBlockAF = colorStart;
             blockAF.GetComponent<Collider2D>().enabled = false;
         }
-        else if (colorBlockNA == colorActivate)
+    }
+
+    public void DeActivateBlockNA()
+    {
+        if (colorBlockNA == colorActivate)
         {
             colorBlockNA = colorStart;
             blockNA.GetComponent<Collider2D>().enabled = false;
         }
-        else if (colorBlockSA == colorActivate)
+    }
+
+    public void DeActivateBlockSA()
+    {
+        if (colorBlockSA == colorActivate)
         {
             colorBlockSA = colorStart;
             blockSA.GetComponent<Collider2D>().enabled = false;

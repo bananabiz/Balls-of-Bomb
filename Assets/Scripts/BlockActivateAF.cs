@@ -11,7 +11,7 @@ public class BlockActivateAF : MonoBehaviour {
     public bool clicked = false;
 
     
-    void Awake ()
+    void Awake()
     {
         colorStart = new Color(0.5f, 0.5f, 0.5f, 0.1f);
         colorActivate = new Color(1, 0.9f, 0.02f, 1);
@@ -27,7 +27,7 @@ public class BlockActivateAF : MonoBehaviour {
     } 
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         if (clicked)
         {

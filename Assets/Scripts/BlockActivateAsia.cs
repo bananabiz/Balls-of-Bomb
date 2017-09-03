@@ -8,7 +8,7 @@ public class BlockActivateAsia : MonoBehaviour {
     public GameObject blockAsia;
 
     Color colorStart, colorActivate;
-    private bool clicked = false;
+    public bool clicked = false;
 
 
     void Awake()
@@ -33,7 +33,7 @@ public class BlockActivateAsia : MonoBehaviour {
         {
             blockAsia.GetComponent<Collider2D>().enabled = true;
             GameObject.Find("BlockAsia").GetComponent<MeshRenderer>().material.color = colorActivate;
-            //Cursor.visible = false;
+            Cursor.visible = false;
         }
 
     }

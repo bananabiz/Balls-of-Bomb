@@ -7,13 +7,16 @@ public class CollisionBomb : MonoBehaviour
 {
     public Rigidbody2D bomb;
     public ScoreManager2 scoreManager2;
-    
+
+    public BlockDeActivate deActivate;
     public AudioSource sound;
 
     private void Awake()
     {
         sound = GetComponent<AudioSource>();
         bomb = GetComponent<Rigidbody2D>();
+
+        deActivate = GetComponent<BlockDeActivate>();
     }
 
     private void Start()
@@ -34,7 +37,14 @@ public class CollisionBomb : MonoBehaviour
             Destroy(bomb.gameObject, 0.01f);
             
             scoreManager2.score2++;
-            
+            /*
+            deActivate.DeActivateBlockAU();
+            deActivate.DeActivateBlockAsia();
+            deActivate.DeActivateBlockEU();
+            deActivate.DeActivateBlockAF();
+            deActivate.DeActivateBlockNA();
+            deActivate.DeActivateBlockSA();
+            */
         }
 
     }

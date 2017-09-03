@@ -8,7 +8,7 @@ public class BlockActivateEU : MonoBehaviour {
     public GameObject blockEU;
 
     Color colorStart, colorActivate;
-    private bool clicked = false;
+    public bool clicked = false;
 
 
     void Awake()
@@ -33,7 +33,7 @@ public class BlockActivateEU : MonoBehaviour {
         {
             blockEU.GetComponent<Collider2D>().enabled = true;
             GameObject.Find("BlockEU").GetComponent<MeshRenderer>().material.color = colorActivate;
-            //Cursor.visible = false;
+            Cursor.visible = false;
         }
 
     }

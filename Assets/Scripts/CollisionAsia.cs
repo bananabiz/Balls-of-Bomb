@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Collision : MonoBehaviour
+public class CollisionAsia : MonoBehaviour
 {
     public Rigidbody2D bomb;
     public ScoreManager scoreManager;
     public BlockDeActivate deActivate;
     public AudioSource sound;
-    public BlockActivateAU buttonAU;
+    public BlockActivateAsia buttonAsia;
+
     private void Awake()
     {
         deActivate = GetComponent<BlockDeActivate>();
@@ -21,24 +22,24 @@ public class Collision : MonoBehaviour
     {
         bomb = GetComponent<Rigidbody2D>();
         scoreManager = GameObject.Find("Score").GetComponent<ScoreManager>();
-        
+
     }
-    
+
     private void OnCollisionEnter2D(Collision2D bomb)
     {
-       
+
         if (bomb.gameObject.tag == "Bomb")
         {
-            buttonAU.clicked = false;
+            buttonAsia.clicked = false;
             Cursor.visible = true;
             sound.Play();
             Destroy(bomb.gameObject, 0.05f);
-          
-            deActivate.DeActivateBlock();
+
+            //deActivate.DeActivateBlockAsia();
             scoreManager.score++;
 
         }
 
     }
-   
+
 }
