@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawn : MonoBehaviour {
 
@@ -11,11 +12,12 @@ public class Spawn : MonoBehaviour {
 
     private int i;
     private Rigidbody2D rigid;
+    //private Countries countries;
     
     // Use this for initialization
     void Start ()
     {
-
+        //countries = GetComponent<Countries>();
         //InvokeRepeating("SpawnObject", 0.5f, 3);
     }
 
@@ -31,6 +33,7 @@ public class Spawn : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        
         
         if (Input.GetKeyDown(KeyCode.Space))
         {

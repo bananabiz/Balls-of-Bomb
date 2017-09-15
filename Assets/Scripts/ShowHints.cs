@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Countries : MonoBehaviour
+public class ShowHints : MonoBehaviour
 {
-    public string[] continent = new string[6];
+    //public string[] continent = new string[6];
 
     public string[] countryEU = new string[50];
     public string[] countryAF = new string[54];
@@ -13,12 +14,19 @@ public class Countries : MonoBehaviour
     public string[] countryNA = new string[23];
     public string[] countrySA = new string[12];
 
-    public string[] hint = new string[10];
+    public string[] hint = new string[11];
+    public string hintText;
+    public Text hintT;
+    public float scrW, scrH;
+    public int c, h;
+    //public float timer;
 
     // Use this for initialization
-    void Start ()
+    public void Start ()
     {
-        continent = new string[6] { "Europe", "Africa", "Asia", "Australia&Oceania", "NorthAmerica", "SouthAmerica" };
+        hintT = this.GetComponent<Text>();
+
+        //continent = new string[6] { countryEU[50], countryAF[54], countryAsia[49], countryAU[13], countryNA[23], countrySA[12] };
 
         countryEU = new string[50]
         {"Albania", "Andorra", "Armenia", "Austria", "Azerbaijan",
@@ -75,10 +83,58 @@ public class Countries : MonoBehaviour
             "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname",
             "Uruguay", "Venezuela" };
 
-        hint = new string[10]
-        {"Destroy ", "Cry, ", "Goodbye, ", "My bomb choose ", "Feel my baby, ",
-            "Disappear, ", "Target: ", "( O )==>> ", "Fireworks, ", "BOOM! "
+        hint = new string[11]
+        {"Destroy ", "Cry, ", "Goodbye, ", "My Baby choose ", "Feel my power, ",
+            "Disappear, ", "Target: ", "Taste my ball, ", "Fireworks, ", "BOOM! ",
+            "Beg for mercy, "
         };
+
+        scrW = Screen.width / 16;
+        scrH = Screen.height / 9;
+
+        StartCoroutine("waitFiveSeconds"); 
     }
-	
+
+    IEnumerator waitFiveSeconds()
+    {
+        yield return new WaitForSeconds(5); 
+    }
+
+    public void ShowHint()
+    {
+        c = Random.Range(0, 6);
+        h = Random.Range(0, 10);
+
+        if (c == 0)
+        {
+            hintText = hint[Random.Range(0, 11)] + countryEU[Random.Range(0, 51)] + "!";
+        }
+        else if (c == 1)
+        {
+            hintText = hint[Random.Range(0, 11)] + countryAF[Random.Range(0, 55)] + "!";
+        }
+        else if (c == 2)
+        {
+            hintText = hint[Random.Range(0, 11)] + countryAsia[Random.Range(0, 50)] + "!";
+        }
+        else if (c == 3)
+        {
+            hintText = hint[Random.Range(0, 11)] + countryAU[Random.Range(0, 14)] + "!";
+        }
+        else if (c == 4)
+        {
+            hintText = hint[Random.Range(0, 11)] + countryNA[Random.Range(0, 24)] + "!";
+        }
+        else if (c == 5)
+        {
+            hintText = hint[Random.Range(0, 11)] + countrySA[Random.Range(0, 13)] + "!";
+        }
+        if (hintText != "")
+        {
+            hintT.text = hintText;
+        }
+        //waitFiveSeconds();
+        StartCoroutine("waitFiveSeconds");
+    }
+
 }
